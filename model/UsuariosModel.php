@@ -2,14 +2,14 @@
 class UsuariosModel extends ModeloBase{
     private $table;
 
-    public function __construct(){
+    public function __construct($adapter){
         $this->table="usuarios";
-        parent::__construct($this->table);
+        parent::__construct($this->table, $adapter);
     }
 
     //Metodos de consulta
     public function getUnUsuario(){
-        $query="SELECT * FROM usuarios WHERE email='ejemplo@ejemplo.com'";
+        $query="SELECT * FROM usuarios WHERE email='miguel@miguel.com'";
         $usuario=$this->ejecutarSql($query);
         return $usuario;
     }

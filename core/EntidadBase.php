@@ -4,12 +4,11 @@ class EntidadBase{
     private $db;
     private $conectar;
 
-    public function __construct($table) {
+    public function __construct($table, mysqli $adapter) {
         $this->table=(string) $table;
 
-        require_once 'Conectar.php';
-        $this->conectar=new Conectar();
-        $this->db=$this->conectar->conexion();
+        $this->conectar = null;
+        $this->db = $adapter;
     }
 
     public function getConetar(){
@@ -21,9 +20,9 @@ class EntidadBase{
     }
 
     public function getAll(){
+        $resultSet = false;
         $query=$this->db->query("SELECT * FROM $this->table ORDER BY id DESC");
 
-        //Devolvemos el resultset en forma de array de objetos
         while ($row = $query->fetch_object()) {
             $resultSet[]=$row;
         }
@@ -32,6 +31,7 @@ class EntidadBase{
     }
 
     public function getById($id){
+        $resultSet = false;
         $query=$this->db->query("SELECT * FROM $this->table WHERE id=$id");
 
         if($row = $query->fetch_object()) {
@@ -42,6 +42,7 @@ class EntidadBase{
     }
 
     public function getBy($column,$value){
+        $resultSet = false;
         $query=$this->db->query("SELECT * FROM $this->table WHERE $column='$value'");
 
         while($row = $query->fetch_object()) {
@@ -63,9 +64,8 @@ class EntidadBase{
 
 
     /*
-     * Aquí es donde podemos crear los métodos que nos ayuden con las operaciones
-     * que las entidades deben realizar con la base de datos.
+     * Aqui podemos montarnos un monton de métodos que nos ayuden
+     * a hacer operaciones con la base de datos de la entidad
      */
 
 }
-?>

@@ -3,9 +3,9 @@ class ModeloBase extends EntidadBase{
     private $table;
     private $fluent;
 
-    public function __construct($table) {
+    public function __construct($table, $adapter) {
         $this->table=(string) $table;
-        parent::__construct($table);
+        parent::__construct($table, $adapter);
 
         $this->fluent=$this->getConetar()->startFluent();
     }
@@ -13,6 +13,8 @@ class ModeloBase extends EntidadBase{
     public function fluent(){
         return $this->fluent;
     }
+
+
 
     /**
      * Dado una sentencia SQL, intenta crear un objeto o un array de objetos del resultado.
@@ -22,7 +24,7 @@ class ModeloBase extends EntidadBase{
      * @return array|bool|null|object|stdClass
      */
     public function ejecutarSql($query){
-        $resultSet = null;
+        $resultSet = false;
         $query=$this->db()->query($query);
         if($query==true){
             if($query->num_rows>1){
@@ -43,8 +45,6 @@ class ModeloBase extends EntidadBase{
         return $resultSet;
     }
 
-    /*
-     * Aquí incluiremos métodos que puedan resultar útiles a los modelos.
-     */
+    //Aqui podemos montarnos metodos para los modelos de consulta
 
 }
