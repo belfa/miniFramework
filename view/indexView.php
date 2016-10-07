@@ -45,7 +45,7 @@
 </section>
 <footer class="col-lg-12">
     <hr/>
-    MiniFramework
+    MiniFramework - Patiño
 </footer>
 </body>
 </html>

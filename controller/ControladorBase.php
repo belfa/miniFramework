@@ -1,9 +1,13 @@
 <?php
 class ControladorBase{
 
+    /**
+     * ControladorBase constructor.
+     */
     public function __construct() {
-        require_once 'EntidadBase.php';
-        require_once 'ModeloBase.php';
+
+        require_once PATH_ROOT.'/core/EntidadBase.php';
+        require_once PATH_ROOT.'/core/ModeloBase.php';
 
         /*
          * Carga todos los modelos. Tiene el pequeño inconveniente de que al tratarse
@@ -29,10 +33,10 @@ class ControladorBase{
             ${$id_assoc}=$valor;
         }
 
-        require_once 'core/AyudaVistas.php';
+        require_once PATH_ROOT.'/core/AyudaVistas.php';
         $helper=new AyudaVistas();
 
-        require_once 'view/'.$vista.'View.php';
+        require_once PATH_ROOT.'/view/'.$vista.'View.php';
     }
 
     public function redirect($controlador=CONTROLADOR_DEFECTO,$accion=ACCION_DEFECTO){

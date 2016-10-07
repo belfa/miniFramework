@@ -1,5 +1,7 @@
 <?php
 
+define("PATH_ROOT", dirname(__FILE__));
+
 /*
  * Este es el controlador Frontal. Es donde se cargan todos los ficheros de la aplicación, por lo que se trata
  * de la única página que el usuario visita realmente.
@@ -8,7 +10,7 @@
 require_once 'config/global.php';
 
 //Base para los controladores
-require_once 'core/ControladorBase.php';
+require_once 'controller/ControladorBase.php';
 
 //Funciones para el controlador frontal
 require_once 'core/ControladorFrontal.func.php';
